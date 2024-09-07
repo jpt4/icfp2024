@@ -108,41 +108,34 @@
           [ (== `[,a [(nat 0 1) [,b ,c]]] i) 
             (taro `[,a ,b] resa)
             (taro `[,a ,c] resb)                                 (taro `[,resa ,resb] o) ]
-          [ (== `[,a [(num 1 1) ,b]] i) 
+          [ (== `[,a [(nat 1 1) ,b]] i) 
             (taro `[,a ,b] resa)                                 (wuto resa o) ]
-          [ (== `[,a [(num 0 0 1) ,b]] i)
+          [ (== `[,a [(nat 0 0 1) ,b]] i)
             (taro `[,a ,b] resa)                                 (luso resa o) ]
-          [ (== `[,a [(num 1 0 1) [,b ,c]]] i) 
+          [ (== `[,a [(nat 1 0 1) [,b ,c]]] i) 
             (taro `[,a ,b] resa)
             (taro `[,a ,c] resb)                                 (tiso `[,resa ,resb] o) ]
 
-          [ (== `[,a [(num 0 1 1) [,b [,c ,d]]]] i) 
-            (taro `[,a [(num 0 0 1) [num (0 0 1) ,b]]] resa)
-            (taro `[[(num 0 1) (num 1 1)] [(num 0) ,resa]] resb)
-            (taro `[[,c ,d] [(num 0) ,resb]] resc)
+          [ (== `[,a [(nat 0 1 1) [,b [,c ,d]]]] i) 
+            (taro `[,a [(nat 0 0 1) [nat (0 0 1) ,b]]] resa)
+            (taro `[[(nat 0 1) (nat 1 1)] [(nat 0) ,resa]] resb)
+            (taro `[[,c ,d] [(nat 0) ,resb]] resc)
                                                                  (taro `[,a ,resc] o) ]
-          [ (== `[,a [(num 1 1 1) [,b ,c]]] i) 
+          [ (== `[,a [(nat 1 1 1) [,b ,c]]] i) 
             (taro `[,a ,b] resa)                                 (taro `[,resa ,c] o) ]
-          [ (== `[,a [(num 0 0 0 1) [,b ,c]]] i) 
+          [ (== `[,a [(nat 0 0 0 1) [,b ,c]]] i) 
             (taro `[,a ,b] resa)                                 (taro `[[,resa ,a] ,c] o) ]
-          [ (== `[,a [(num 1 0 0 1) [,b ,c]]] i) 
-            (taro `[,a ,c] resa)                                 (taro `[,resa [(num 0 1) [[(num 0) (num 1)] [(num 0) ,b]]]] o) ]
-          [ (== `[,a [(num 0 1 0 1) [[,b ,c] ,d]]] i) 
+          [ (== `[,a [(nat 1 0 0 1) [,b ,c]]] i) 
+            (taro `[,a ,c] resa)                                 (taro `[,resa [(nat 0 1) [[(nat 0) (nat 1)] [(nat 0) ,b]]]] o) ]
+          [ (== `[,a [(nat 0 1 0 1) [[,b ,c] ,d]]] i) 
             (taro `[,a ,c] resa)
             (taro `[,a ,d] resb)                                 (haxo `[,b [,resa ,resb]] o) ]
           
-          [ (== `[,a [(num 1 1 0 1) [[,b ,c] ,d]]] i)
+          [ (== `[,a [(nat 1 1 0 1) [[,b ,c] ,d]]] i)
             (taro `[,a ,c] resa)
-            (taro `[,a ,d] resb)                                 (taro `[[,resa ,resb] [(num 0) (num 3)]] o) ]
-          [ (== `[,a [(num 1 1 0 1) [,b ,c]]] i)                 (taro `[,a ,c] o) ]
+            (taro `[,a ,d] resb)                                 (taro `[[,resa ,resb] [(nat 0) (nat 3)]] o) ]
+          [ (== `[,a [(nat 1 1 0 1) [,b ,c]]] i)                 (taro `[,a ,c] o) ]
           )))
-
-(define (numo n)
-  (fresh (a b c)
-         (conde
-          [(== '(num ()) n)]
-          [(== '(num (1)) n)]
-          [(>1o a) (== `(num ,a) n)])))
 
 (define (raso i o)
   (fresh (a b c d e resa resb resc resd)
